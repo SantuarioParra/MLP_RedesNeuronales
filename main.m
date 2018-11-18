@@ -1,8 +1,16 @@
 function main()
 clc
 fid = fopen('Resultados.txt', 'wt');
-%txt='MLP.txt';
-txt='PHerminte_Input_Target_100_Norm.txt';
+
+%apertura de archivos por explorador
+[archivo,ruta]=uigetfile('*.txt','Seleccionar el data set ');
+if archivo==0
+ return;
+else
+ dat_archivo=strcat(ruta,archivo);
+ txt=dat_archivo;
+end
+
 
 data=load(txt);
 fprintf('>> Archivo cargado: %s \n', txt);
