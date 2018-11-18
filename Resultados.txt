@@ -1,0 +1,24 @@
+:::::::::::::::::::::::::::::::::: PERCEPTRON MULTICAPA ::::::::::::::::::::::::::::::
+
+ Arquitectura del MLP:                [	1	1	1 ]
+ Funciones de activación:  [	2	1    ]
+ Donde: 	 1 -> purelin(n) 	 2 -> logsig(n) 	 3 -> tansig(n) 
+
+ Valor mínimo del error de iteración (Eit): 0.003000
+ Factor de aprendizaje (alpha): 0.100000
+ Iteraciones de aprendizaje: 200
+ Periodo de validación (Pval): 5
+ Valor máximo de validación (MAXval): 6
+
+========================================== ITERACIONES MÁXIMAS 200 =========================================
+
+	 --> CRITERIO DE PARO: Número máximo de incrementos consecutivos alcanzado en la iteración 110
+ W1
+ 1.139103 	
+
+
+
+ W2
+ 0.789640 	
+
+
