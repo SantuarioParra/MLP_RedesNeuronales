@@ -1,10 +1,10 @@
-fprintf('El famosisimo perceptrón multicapa');
-%tamaños de la matriz input y targets
+fprintf('El famosisimo perceptrÃ³n multicapa');
+%tamaÃ±os de la matriz input y targets
 sx1=30;
 sy1=1;
 %obteniendo el total de los datos
 totalDatos=sx1;
-%Rango de la señallll
+%Rango de la seÃ±allll
 rangoInferior=input('limite inferior del rango\n');
 rangoSuperior=input('limite superior del rango\n');
 v1=input('vector 1 de la arquitectura\n');
@@ -58,21 +58,21 @@ switch cC
     otherwise
         fprintf('No soportado');
 end
-%obtenemos el tamaño de nuetra red
+%obtenemos el tamaÃ±o de nuetra red
 tamRi=size(red);
 tamR=tamRi(1,1);
 %Valor de error aceptable para considerar aprendizaje exitoso
 error_epoch_train=input('Dame el valor aceptable del error(error_epoch_train)');
 %valor del factor de aprendizaje
 fa=input('valor del factor de aprendizaje\n');
-%Número máximo de épocas
-epochMax=input('Número máximo de épocas\n');
-%Cada cuantas iteraciones se llevará a cabo una época de validación
-epoch_val=input('Épocas de validación\n');
-%Número máximo de incrementos consecutivos del error_epoch_validation
-num_val=input('Número máximo de incrementos consecutivos del error_epoch_validation\n');
-%División del dataset en 3 conjuntos
-%Elección de configuración de perceptron
+%NÃºmero mÃ¡ximo de Ã©pocas
+epochMax=input('NÃºmero mÃ¡ximo de Ã©pocas\n');
+%Cada cuantas iteraciones se llevarÃ¡ a cabo una Ã©poca de validaciÃ³n
+epoch_val=input('Ã‰pocas de validaciÃ³n\n');
+%NÃºmero mÃ¡ximo de incrementos consecutivos del error_epoch_validation
+num_val=input('NÃºmero mÃ¡ximo de incrementos consecutivos del error_epoch_validation\n');
+%DivisiÃ³n del dataset en 3 conjuntos
+%ElecciÃ³n de configuraciÃ³n de perceptron
 TdD=input('1)80\% 10\% 10\% y 2)70\% 15\% 15\%');
 tamCE=0;
 tamCV=0;
@@ -165,10 +165,10 @@ switch TdD
         fclose(idtV);
         fclose(idtP);
     otherwise
-        fprintf('Opción incorrecta');
+        fprintf('OpciÃ³n incorrecta');
 end
 
-%Se inicializan los valores de los parámetros entre -1 y 1 forma aleatoria
+%Se inicializan los valores de los parÃ¡metros entre -1 y 1 forma aleatoria
 %para los pesos
 for vap=1:tamR
 %cada uno de las capas de la red
@@ -296,8 +296,8 @@ for ie=1:tamCE
     an=cell(1,tamR);
     p=ce(ie,1);
     vectorAPropagar=p;
-    %propagación hacia adelante
-    %fprintf('Propagación hacia adelante');
+    %propagaciÃ³n hacia adelante
+    %fprintf('PropagaciÃ³n hacia adelante');
     %disp(tamR);
     %fprintf('wdf');
     %disp(size(v2));
@@ -409,13 +409,13 @@ t=te(ie,1);
          %fprintf('ps:\n');
          %disp(sensitividades{sen,1});
      else
-         %fprintf('tamaño de fns:\n');
+         %fprintf('tamaÃ±o de fns:\n');
          %disp(size(fNS{sen,1}));
          %disp(fNS{sen,1});
-         %fprintf('tamaño de red:\n');
+         %fprintf('tamaÃ±o de red:\n');
          %disp(size(red{sen+1,1}));
          %disp(red{sen+1,1});
-         %fprintf('tamaño de sencitividades:\n');
+         %fprintf('tamaÃ±o de sencitividades:\n');
          %disp(size(sensitividades{sen+1,1}));
          sensitividades{sen,1}=fNS{sen,1}*red{sen+1,1}*sensitividades{sen+1,1};
  
@@ -457,7 +457,7 @@ end
     end
 contadorEpoch=contadorEpoch+1;
 end
-%validación de resultados
+%validaciÃ³n de resultados
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%conjunto de pruebas
 fileIDcp = fopen('iCP.txt','r');
 formatSpecce='%f';
@@ -515,7 +515,7 @@ fclose(fileIDce);
                 end
                 
             end
-            %fprintf(idRes,'%f\r\n',vectorAPropagar);
+            fprintf(idRes,'%f\r\n',vectorAPropagar);
             errorU=tv(iv,1)-vectorAPropagar;
             %%%
             errorDePrueba=errorDePrueba+abs(errorU);
