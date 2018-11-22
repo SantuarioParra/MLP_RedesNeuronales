@@ -3,7 +3,7 @@ rangoInferior=input('limite inferior del rango\n');
 rangoSuperior=input('limite superior del rango\n');
 cs=input('cantidad de los saltos\n');
 
-idcE=fopen('nuevoCE.txt','w');
+idcE=fopen('datasetClase.txt','w');
 intervalo=(rangoSuperior-rangoInferior)/cs;
 p=rangoInferior+intervalo;
 separador=1;

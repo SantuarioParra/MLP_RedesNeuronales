@@ -1,5 +1,5 @@
 %% Perceptrón Multicapa MLP
- % Autor: Alejandro Hernández Gómez
+ % Autores: Santuario Parra Luis Fernando 
  % Carrera: Ingenieria en Sistemas Computacionales
  % Escuela: Escuela Superior de Computo ESCOM - Insituto Politecnico Nacional IPN
  % Asignatura: Neural Networks
@@ -12,8 +12,34 @@ function main()
 
     %% Asignación del archivo de resultados y carga del archivo de prototipos y targets
     fid = fopen('Resultados.txt', 'wt');
-    txt=input('Introduzca el archivo de prototipos y targets: ');
+    disp('Usaras un unico archivo de entradas y targets o usaras un archivo para entradas y targets:');
+    opcion=input('1.Un archivo / 2.Dos Archivos : ');
+    if opcion==1
+     [archivo,ruta]=uigetfile('*.txt','Seleccione el archivo de entradas y targets');
+        if archivo==0
+         return;
+        else
+         txt=strcat(ruta,archivo);
+        end
     data=load(txt);
+    else
+    [archivo,ruta]=uigetfile('*.txt','Seleccione el archivo de Entradas');
+        if archivo==0
+         return;
+        else
+         txt=strcat(ruta,archivo);
+        end  
+     [archivo2,ruta2]=uigetfile('*.txt','Seleccione el archivo de targets');
+        if archivo2==0
+         return;
+        else
+         txt2=strcat(ruta2,archivo2);
+        end
+    valores=load(txt);
+    targets=load(txt2);
+    data = horzcat(valores,targets);
+    end
+
     fprintf('>> El archivo "%s" se cargó correctamente \n\n', txt);
     [fil, colum]=size(data);
     
@@ -25,7 +51,7 @@ function main()
 
     target= Maprendizaje(:,end);
     entrenam=elimina_columna(Maprendizaje,colum);
-    [fil2, colum2]=size(entrenam);
+    [~, colum2]=size(entrenam);
     
     %% Asignación de la arquitectura (vector 1)
     N=input('\n¿Cuántos valores tiene el vector de la arquitectura?: ');
@@ -35,7 +61,7 @@ function main()
     for i=1:N
         if i==1
             RNA(i)=colum2;
-            fprintf('\tNúmero de entradas de la RNA: %i \n', RNA(i)-1);
+            fprintf('\tNúmero de entradas de la RNA: %i \n', RNA(i));
         else
         fprintf('\tNeuronas en la capa %i: ', i-1);
         RNA(i)=input('');
@@ -156,7 +182,7 @@ end
 
 %% Graficar pesos
 function Grafica_Pesos(matriz,iteracion)
-    [filas,col]=size(matriz);
+    [~,col]=size(matriz);
     figure('position',[0,0,800,800])
     for j=1:col
         subplot(col,1,j)
@@ -178,7 +204,7 @@ function Grafica_Pesos(matriz,iteracion)
             end
         end 
         plot(auxPlot);
-        title('Comportamiento de W')
+        title('Comportamiento de W');
         if cont-1 == 3
             legend('W1','W2', 'W3')
         elseif cont-1==1
@@ -213,8 +239,8 @@ end
 
 %% Graficar datos
 function Graficar_Datos(GraficaE, Eprueba, iteracion, Pval, a_total, target,opc)
-    [fil, col]=size(GraficaE);
-    [f, c]=size(a_total);
+    [~, col]=size(GraficaE);
+    [~, c]=size(a_total);
     i=Pval;
     k=1;
     if iteracion >= Pval
@@ -232,8 +258,8 @@ function Graficar_Datos(GraficaE, Eprueba, iteracion, Pval, a_total, target,opc)
         end    
     else
         ErrorVal=0;
-        x=linspace(1, iteracion, iteracion)
-        y=linspace(1, iteracion, 1);
+        x = linspace(1, iteracion, iteracion);
+        y = linspace(1, iteracion, 1);
     end
       
     [fx, cx]=size(x);
@@ -243,14 +269,14 @@ function Graficar_Datos(GraficaE, Eprueba, iteracion, Pval, a_total, target,opc)
     figure
     
     subplot(2,1,1)
-    plot(x,GraficaE, 'o:k', y,Eprueba, 'o:b','markersize',8);     
+    plot(x,GraficaE, 's:k', y,Eprueba, 'x:b');     
     title('Errores')
     legend('Error ent y val', 'Error prueba');   
     xlabel('Número de iteraciones')
     ylabel('Valor del error')  
     
     subplot(2,1,2)
-    plot(z,target, 'o k',z,a_total,'o r');
+    plot(z,target, 'o k',z,a_total,'+ r');
     legend('Señal Real', 'Señal obtenida');   
     title('Resultados')
      

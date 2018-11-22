@@ -1,0 +1,28 @@
+Archivo ingresado: C:\Users\Fernando\Documents\MLP_RedesNeuronales\Conjuntos_de_entrenamiento_MLP\01_Polinomio_Entrada.txt
+
+ Arquitectura del MLP: [ 1 3 2 1 ] [ 3 2 1 ]
+ Eit: 0.010000
+ alpha: 0.100000
+ itmax: 3000
+ pval: 100
+ maxval: 9
+>> CRITERIO DE PARO: Iteraciones máximas alcanzadas
+>>Tiempo de ejecución: 1527229431761.000000
+
+ W1
+ -6.884170 	
+ 2.766473 	
+ -6.522697 	
+
+
+
+ W2
+ 2.605607 	 12.217516 	 -0.557293 	
+ 2.390549 	 -7.971964 	 -2.826104 	
+
+
+
+ W3
+ -1.147733 	 -2.169695 	
+
+

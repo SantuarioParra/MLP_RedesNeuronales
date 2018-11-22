@@ -1,5 +1,5 @@
-%% Generador de funciones
- % Autor: Alejandro Hernández Gómez
+%% Perceptrón Multicapa MLP
+ % Autores: Santuario Parra Luis Fernando 
  % Carrera: Ingenieria en Sistemas Computacionales
  % Escuela: Escuela Superior de Computo ESCOM - Insituto Politecnico Nacional IPN
  % Asignatura: Neural Networks
