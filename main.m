@@ -54,7 +54,11 @@ function main()
     [~, colum2]=size(entrenam);
     
     %% Asignación de la arquitectura (vector 1)
-    N=input('\n¿Cuántos valores tiene el vector de la arquitectura?: ');
+    arquitectura=input('Ingrese el vector de la arquitectura: ','s' );
+    arquitectura=erase(arquitectura,["[","]"]);
+    auxn=erase(arquitectura,[" ","[","]"]);
+    N=strlength(auxn);
+    auxRNA=str2num(arquitectura);
     RNA=ones(N, 1);
     FUNACT=ones(N-1,1);
     
@@ -64,7 +68,8 @@ function main()
             fprintf('\tNúmero de entradas de la RNA: %i \n', RNA(i));
         else
         fprintf('\tNeuronas en la capa %i: ', i-1);
-        RNA(i)=input('');
+        RNA(i)=auxRNA(i);
+        disp(RNA(i));
         end
     end 
     RNA2 = RNA;
@@ -73,10 +78,14 @@ function main()
     fprintf("");
     
     %% Asignación de la arquitectura (vector 2)
-    fprintf('\nTomando en cuenta que:\n 1. purelin(n) \n 2. logsig(n) \n 3. tansig(n) \nElija la funcion de activacion para cada capa:\n');
+    fprintf('\nTomando en cuenta que:\n 1. purelin(n) \n 2. logsig(n) \n 3. tansig(n)\n');
+    funciones=input('Ingrese el vector de funciones de activación: ','s' );
+    funciones=erase(funciones,["[","]"]);
+    auxf=str2num(funciones);
     for i=1:N-1
         fprintf('\tFunción de activación %i: ', i);
-        FUNACT(i)=input('');
+        FUNACT(i)=auxf(i);
+        disp(FUNACT(i));
     end
     disp(['>> Vector de arquitectura 2 elegido: [' num2str(FUNACT(:).') ']']) ;
     fprintf("\n");
