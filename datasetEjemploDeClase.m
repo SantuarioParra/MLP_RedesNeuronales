@@ -5,6 +5,7 @@ cs=input('cantidad de los saltos\n');
 
 idcE=fopen('datasetClase.txt','w');
 intervalo=(rangoSuperior-rangoInferior)/cs;
+disp(intervalo)
 p=rangoInferior+intervalo;
 separador=1;
 i=1;

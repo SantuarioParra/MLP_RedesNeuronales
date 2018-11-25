@@ -94,38 +94,39 @@ function main()
     fprintf(fid, '\n\n Arquitectura del MLP: ');
     fprintf(fid, '['); fprintf(fid, ' %i', RNA2(:,:)); fprintf(fid, ' ] ['); fprintf(fid, ' %i', FUNACT(:,:)); fprintf(fid, ' ]');
     
+    
     %% Asignación de los parametros del MLP
     fprintf("Porfavor ingrese los parametros del MLP:\n");
     eit = input('  Ingrese el valor mínimo del error de iteración (eit): ');
     alpha = input('  Ingrese el factor de aprendizaje (alpha): ');
-    itMAX = input('  Ingrese el número de iteraciones máximas (itmax): ');
-    Pval =input('  Ingrese la frecuencia en la que se validará (pval): ');
-    MAXval =input('  Ingrese el maximo de aumentos en validación (maxval): ');
+    epochMAX = input('  Ingrese el número maximo de epocas(epochMax): ');
+    epochVal =input('  Ingrese la frecuencia en la que se validará (epochVal): ');
+    numVal =input('  Ingrese el maximo de aumentos en validación (numVal): ');
     
-    Wcell = cell(itMAX,N-1);
+    Wcell = cell(epochMAX,N-1);
     set(0,'RecursionLimit',9999999999)
 
     %% Escribe en el archivo Resultado.txt los parametros utilizados
     fprintf(fid,'\n Eit: %f',eit);
     fprintf(fid,'\n alpha: %f',alpha);
-    fprintf(fid,'\n itmax: %i',itMAX);
-    fprintf(fid,'\n pval: %i',Pval);
-    fprintf(fid,'\n maxval: %i',MAXval);
+    fprintf(fid,'\n itmax: %i',epochMAX);
+    fprintf(fid,'\n pval: %i',epochVal);
+    fprintf(fid,'\n maxval: %i',numVal);
 
     %% Inicializa con valores aleatorios los pesos y bias
     Capas=length(RNA)-1;
     for k=1: Capas
-       W(k)={rand(RNA(k+1), RNA(k))}; 
-       bias(k)={rand(RNA(k+1), 1)};
+       W(k)={rand(RNA(k+1), RNA(k))} 
+       bias(k)={rand(RNA(k+1), 1)}
     end   
     
     %% Inicializa el entrenamiento
     tic %inicializa el cronometro
     fprintf("\n>> Iniciando el entrenamiento, porfavor espere...\n");
-    perceptron(Wcell,0, fid, target, entrenam, W, bias, 0, eit, alpha, itMAX, 1, RNA, FUNACT, Pval, 1, MAXval, Mvalidacion, Mprueba, 1, 0);
+    perceptron(Wcell,0, fid, target, entrenam, W, bias, 0, eit, alpha, epochMAX, 1, RNA, FUNACT, epochVal, 1, numVal, Mvalidacion, Mprueba, 1, 0);
 end
 
-%% Validacion
+%% Conjunto de datos
 function [Mvalidacion, Maprendizaje, Mprueba]=ConjuntoDat(mux,fil, data)
 
     if(mux==1)
@@ -320,13 +321,13 @@ function [m] = Random(imin,imax,K)
 end 
 
 %% Algoritmo del perceptrón
-function perceptron(Wcell,Wplot, fid, target, matriz, W, bias, GraficaE, eit, alpha, itMAX, iteracion, RNA, FUNACT, Pval, Periodo, MAXval, Mvalidacion, Mprueba, contador, aFinal)
-
+function perceptron(Wcell,Wplot, fid, target, matriz, W, bias, GraficaE, eit, alpha, itMAX, iteracion, RNA, FUNACT, Pval, Periodo, MAXval, Mvalidacion, Mprueba, contador, aFinal) 
     [fil2, colum2]=size(matriz);
 
     Capas=length(RNA)-1;
     for i=1:Capas
-        Wcell{iteracion,i}=W{1,i};
+        Wcell{iteracion,i}=W{1,i}; 
+        save('celdas.mat','Wcell');
     end
 
     if contador == MAXval
@@ -486,7 +487,7 @@ function perceptron(Wcell,Wplot, fid, target, matriz, W, bias, GraficaE, eit, al
     else
          perceptron(Wcell,Wplot, fid, target, matriz, W, bias, GraficaE, eit, alpha, itMAX, iteracion+1, RNA, FUNACT, Pval, Periodo+1, MAXval, Mvalidacion, Mprueba, contador, aFinal);
     end
-
+   
  
 end
 

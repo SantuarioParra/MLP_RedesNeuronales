@@ -1,21 +1,8 @@
 Archivo ingresado: C:\Users\Shado\OneDrive\Documentos\MLP_RedesNeuronales\datasetClase.txt
 
- Arquitectura del MLP: [ 1 2 1 ] [ 2 1 ]
- Eit: 0.100000
+ Arquitectura del MLP: [ 1 5 1 ] [ 2 1 ]
+ Eit: 0.001000
  alpha: 0.100000
- itmax: 2000
- pval: 200
- maxval: 12
->> CRITERIO DE PARO: Iteraciones máximas alcanzadas
->>Tiempo de ejecución: 59590097127.000000
-
- W1
- -11.698124 	
- -3.817629 	
-
-
-
- W2
- 3.049434 	 -3.734759 	
-
-
+ itmax: 5000
+ pval: 100
+ maxval: 15
