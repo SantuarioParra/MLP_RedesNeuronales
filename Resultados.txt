@@ -1,8 +1,15 @@
-Archivo ingresado: C:\Users\Shado\OneDrive\Documentos\MLP_RedesNeuronales\datasetClase.txt
-
- Arquitectura del MLP: [ 1 5 1 ] [ 2 1 ]
- Eit: 0.001000
- alpha: 0.100000
- itmax: 5000
- pval: 100
- maxval: 15
+1.891595
+2.795039
+3.769753
+5.108349
+6.086106
+7.002437
+8.091161
+8.795751
+9.404557
+10.078682
+10.493374
+10.841679
+11.219944
+11.450462
+11.643741

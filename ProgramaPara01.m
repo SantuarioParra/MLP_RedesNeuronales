@@ -34,7 +34,7 @@ fprintf('El famosisimo MLP 3000\n\n');
 
     fprintf('>> El archivo "%s" se cargó correctamente \n\n', txt);
     fprintf('Archivo ingresado: %s\n', txt);
-    plot(data(:,2));
+    
     
      %% Asignación de los conjuntos de datos
     TdD=input('Tomando en cuenta que [aprendiaje validacion pruebas] \n 1.[70% 15% 15%] \n 2.[80% 10% 10%] \nElija la opcion de distribución deseada: ');
@@ -181,6 +181,25 @@ switch cC
         bias{1}=b1;
         bias{2}=b2;
         bias{3}=b3;
+    case 5
+        capa1=zeros(v1(1,1),v1(1,2));
+        b1=zeros(v1(1,2),1);
+        capa2=zeros(v1(1,2),v1(1,3));
+        b2=zeros(v1(1,3),1);
+        capa3=zeros(v1(1,3),v1(1,4));
+        b3=zeros(v1(1,4),1);
+        capa4=zeros(v1(1,4),v1(1,5));
+        b4=zeros(v1(1,5),1);
+        red=cell(4,1);
+        red{1}=capa1;
+        red{2}=capa2;
+        red{3}=capa3;
+        red{4}=capa4;
+        bias=cell(4,1);
+        bias{1}=b1;
+        bias{2}=b2;
+        bias{3}=b3;
+        bias{4}=b4;
     otherwise
         fprintf('No soportado');
 end
@@ -258,7 +277,7 @@ fclose(fileIDce);
 contadorEpoch=1;
 n_v=0;
 e_v=0;
-errorDeValidacion=1000;
+errorDeValidacion=1;
 esElprimero=true;
 %Creamos .txt para guardar el error
 idiError=fopen('historialError.txt','w');
@@ -267,7 +286,7 @@ idiContador=fopen('historialContador.txt','w');
 while contadorEpoch<=epochMax && n_v<num_val && errorDeValidacion>error_epoch_train
     modulito=mod(contadorEpoch,epoch_val);
     if modulito==0
-        fprintf('Esta es una época de validación');
+        fprintf('Esta es una época de validación\n');
         errorDeValidacion=0;
         for iv=1:tamCV
             pdv=cv(iv,1);
@@ -300,7 +319,7 @@ while contadorEpoch<=epochMax && n_v<num_val && errorDeValidacion>error_epoch_tr
        end
        fprintf(idiError,'%f\r\n',errorDeValidacion);
         if n_v==num_val
-           fprintf('Se termina por early stopping'); 
+           fprintf('Se alcanzo el numval maximo por early stopping: %d \n',num_val); 
         end    
     else
         errorDeEntrenamiento=0;
@@ -360,7 +379,7 @@ t=te(ie,1);
      end
      fNS{c,1}=FMnM;
  end
- %calculando sensitividades
+ %                          Calculando sensitividades
  sensitividades=cell(tamR,1);
  for sen=tamR:-1:1
      if sen==tamR
@@ -369,7 +388,7 @@ t=te(ie,1);
          sensitividades{sen,1}=fNS{sen,1}*red{sen+1,1}*sensitividades{sen+1,1};
     end
  end
- %ajuste de pesos
+ %                          Ajuste de pesos
  for ap=tamR:-1:1
      
      if ap==1
@@ -408,19 +427,29 @@ t=te(ie,1);
 errorU=te(ie,1)-vectorAPropagar;
 errorDeEntrenamiento=errorDeEntrenamiento+abs(errorU);
 end 
-errorDeEntrenamiento=errorDeEntrenamiento/tamCE;
+errorDeEntrenamiento=round((errorDeEntrenamiento/tamCE),4);
 fprintf(idiError,'%f\r\n',errorDeEntrenamiento);
     end
+    contadorEpoch=contadorEpoch+1;
+    errorDeValidacion=errorDeEntrenamiento;
+    if errorDeEntrenamiento <= error_epoch_train
+    disp("Aprendizaje Exitoso en la epoca: "+contadorEpoch+" con error de Entrenamiento= "+errorDeEntrenamiento);
+    fprintf(idiContador,'%f\r\n',contadorEpoch);
+    else
     disp("Epoca actual>> "+contadorEpoch+" Error de Entrenamiento>> "+errorDeEntrenamiento);
     fprintf(idiContador,'%f\r\n',contadorEpoch);
-contadorEpoch=contadorEpoch+1;
+    end
+    
+
 end
+
 %cerramos .txt para error
 fclose(idiError);
 %cerramos .txt para contadorEpoch
 fclose(idiContador);
 %validación de resultados
-%% conjunto de pruebas
+
+%% Conjunto de pruebas
 fileIDcp = fopen('iCP.txt','r');
 formatSpecce='%f';
 size1=[tamCP,1];
@@ -463,10 +492,13 @@ fclose(fileIDce);
     resultados=fscanf(fileIDRes,formatSpecce,size1);
     fclose(fileIDRes);
     figure
+    target = data(:,2);
+    signal= data(:,1);
     hold on;
-    signal = data(:,2);
-    plot(cp,tp,'o b');
-    plot(cp,resultados,'+ r');
+    plot(signal,target,'g:', cp,tp,'o b', cp,resultados,'+ r');
+    legend('Señal Real', 'Targets', 'Valores obtenidos');   
+    title('Resultados')
+    
     
     %Guardar los pesos y bias en un txt
     fileIDPyBF = fopen('pesosybias.txt','w');
