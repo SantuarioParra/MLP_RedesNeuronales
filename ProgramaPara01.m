@@ -388,7 +388,7 @@ t=te(ie,1);
          sensitividades{sen,1}=fNS{sen,1}*red{sen+1,1}*sensitividades{sen+1,1};
     end
  end
- %                          Ajuste de pesos
+ %                          Ajuste de pesos y bias
  for ap=tamR:-1:1
      
      if ap==1
@@ -439,7 +439,7 @@ fprintf(idiError,'%f\r\n',errorDeEntrenamiento);
     disp("Epoca actual>> "+contadorEpoch+" Error de Entrenamiento>> "+errorDeEntrenamiento);
     fprintf(idiContador,'%f\r\n',contadorEpoch);
     end
-    
+    disp(bias(:,1))
 
 end
 
@@ -543,6 +543,7 @@ fclose(fileIDce);
     fclose(idC);
     figure
     plot(c,e,'o');
+    
 end
 
 %% Conjunto de datos
