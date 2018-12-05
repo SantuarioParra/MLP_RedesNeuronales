@@ -282,7 +282,7 @@ n_v=0;
 errorDeValidacion=1;
 
 %Creamos .txt para guardar el error
-idiError=fopen(historialError.txt','w');
+idiError=fopen('historialError.txt','w');
 %Creamos .txt para contadorEpoch
 idiContador=fopen('historialContador.txt','w');
 %creamos .txt para error de validacion
@@ -485,7 +485,7 @@ contador=contador+1;
     if errorDeEntrenamiento <= error_epoch_train
     disp("Aprendizaje Exitoso en la epoca: "+contadorEpoch+" con error de Entrenamiento= "+errorDeEntrenamiento);
     else
-    disp("Epoca actual>> "+contadorEpoch+" Error de Entrenamiento>> "+errorDeEntrenamiento);
+    % disp("Epoca actual>> "+contadorEpoch+" Error de Entrenamiento>> "+errorDeEntrenamiento);
     end
     
 end
