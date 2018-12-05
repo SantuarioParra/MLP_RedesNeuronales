@@ -50,12 +50,12 @@ fprintf('El famosisimo MLP 3000\n\n');
         case 1
 
             separador=1;
-            idiE=fopen('C:\Users\aleja\OneDrive\Documentos\ericMatLab\iCE.txt','w');
-            idiV=fopen('C:\Users\aleja\OneDrive\Documentos\ericMatLab\iCV.txt','w');
-            idiP=fopen('C:\Users\aleja\OneDrive\Documentos\ericMatLab\iCP.txt','w');
-            idtE=fopen('C:\Users\aleja\OneDrive\Documentos\ericMatLab\tCE.txt','w');
-            idtV=fopen('C:\Users\aleja\OneDrive\Documentos\ericMatLab\tCV.txt','w');
-            idtP=fopen('C:\Users\aleja\OneDrive\Documentos\ericMatLab\tCP.txt','w');
+            idiE=fopen('iCE.txt','w');
+            idiV=fopen('iCV.txt','w');
+            idiP=fopen('iCP.txt','w');
+            idtE=fopen('tCE.txt','w');
+            idtV=fopen('tCV.txt','w');
+            idtP=fopen('tCP.txt','w');
 
             contador=1;
             while contador<=tam
@@ -93,12 +93,12 @@ fprintf('El famosisimo MLP 3000\n\n');
         case 2
             %
             separador=1;
-            idiE=fopen('C:\Users\aleja\OneDrive\Documentos\ericMatLab\iCE.txt','w');
-            idiV=fopen('C:\Users\aleja\OneDrive\Documentos\ericMatLab\iCV.txt','w');
-            idiP=fopen('C:\Users\aleja\OneDrive\Documentos\ericMatLab\iCP.txt','w');
-            idtE=fopen('C:\Users\aleja\OneDrive\Documentos\ericMatLab\tCE.txt','w');
-            idtV=fopen('C:\Users\aleja\OneDrive\Documentos\ericMatLab\tCV.txt','w');
-            idtP=fopen('C:\Users\aleja\OneDrive\Documentos\ericMatLab\tCP.txt','w');
+            idiE=fopen('iCE.txt','w');
+            idiV=fopen('iCV.txt','w');
+            idiP=fopen('iCP.txt','w');
+            idtE=fopen('tCE.txt','w');
+            idtV=fopen('tCV.txt','w');
+            idtP=fopen('tCP.txt','w');
             contador=1;
             while contador<=tam
                 p=eo(contador,1);
@@ -250,24 +250,24 @@ disp(red);
 disp(bias);
 
 %% Conjunto de entrenamiento
-fileIDce = fopen('C:\Users\aleja\OneDrive\Documentos\ericMatLab\iCE.txt','r');
+fileIDce = fopen('iCE.txt','r');
 formatSpecce='%f';
 size1=[tamCE,1];
 ce=fscanf(fileIDce,formatSpecce,size1);
 fclose(fileIDce);
-fileIDte = fopen('C:\Users\aleja\OneDrive\Documentos\ericMatLab\tCE.txt','r');
+fileIDte = fopen('tCE.txt','r');
 formatSpecce='%f';
 size1=[tamCE,1];
 te=fscanf(fileIDte,formatSpecce,size1);
 fclose(fileIDce);
 
 %% Conjunto de validacion
-fileIDcv = fopen('C:\Users\aleja\OneDrive\Documentos\ericMatLab\iCV.txt','r');
+fileIDcv = fopen('iCV.txt','r');
 formatSpecce='%f';
 size1=[tamCV,1];
 cv=fscanf(fileIDcv,formatSpecce,size1);
 fclose(fileIDcv);
-fileIDtv = fopen('C:\Users\aleja\OneDrive\Documentos\ericMatLab\tCV.txt','r');
+fileIDtv = fopen('tCV.txt','r');
 formatSpecce='%f';
 size1=[tamCV,1];
 tv=fscanf(fileIDtv,formatSpecce,size1);
@@ -282,22 +282,22 @@ n_v=0;
 errorDeValidacion=1;
 
 %Creamos .txt para guardar el error
-idiError=fopen('C:\Users\aleja\OneDrive\Documentos\ericMatLab\historialError.txt','w');
+idiError=fopen(historialError.txt','w');
 %Creamos .txt para contadorEpoch
-idiContador=fopen('C:\Users\aleja\OneDrive\Documentos\ericMatLab\historialContador.txt','w');
+idiContador=fopen('historialContador.txt','w');
 %creamos .txt para error de validacion
-idiErrorV=fopen('C:\Users\aleja\OneDrive\Documentos\ericMatLab\historialErrorV.txt','w');
-idiContadorV=fopen('C:\Users\aleja\OneDrive\Documentos\ericMatLab\historialContadorV.txt','w');
+idiErrorV=fopen('historialErrorV.txt','w');
+idiContadorV=fopen('historialContadorV.txt','w');
 %%%%%%%%%%%%%%%%%%% creamos los .txt para la grafica de pesos y bias
 arregloPesos=zeros(tamR,1);
 arregloBias=zeros(tamR,1);
 for iPB=1:tamR
     numeroCapa=int2str(iPB);
-    nombreP=strcat('C:\Users\aleja\OneDrive\Documentos\ericMatLab\pesosCapa',numeroCapa,'.txt');
+    nombreP=strcat('pesosCapa',numeroCapa,'.txt');
     arregloPesos(iPB,1)=fopen(nombreP,'w');
     disp(nombreP);
     disp(arregloPesos(iPB,1));
-    nombreB=strcat('C:\Users\aleja\OneDrive\Documentos\ericMatLab\biasCapa',numeroCapa,'.txt');
+    nombreB=strcat('biasCapa',numeroCapa,'.txt');
     arregloBias(iPB,1)=fopen(nombreB,'w');
 end
 %%%%%%%%%%%%%%%%%%%para la grafica de pesos y bias
@@ -528,13 +528,13 @@ end
 
 
 %% Conjunto de pruebas
-fileIDcp = fopen('C:\Users\aleja\OneDrive\Documentos\ericMatLab\iCP.txt','r');
+fileIDcp = fopen('iCP.txt','r');
 formatSpecce='%f';
 size1=[tamCP,1];
 cp=fscanf(fileIDcp,formatSpecce,size1);
 fclose(fileIDcp);
 %%%
-fileIDtp = fopen('C:\Users\aleja\OneDrive\Documentos\ericMatLab\tCP.txt','r');
+fileIDtp = fopen('tCP.txt','r');
 formatSpecce='%f';
 size1=[tamCP,1];
 tp=fscanf(fileIDtp,formatSpecce,size1);
@@ -542,7 +542,7 @@ fclose(fileIDce);
 
 %propago hacia adelante
     errorDePrueba=0;
-    idRes=fopen('C:\Users\aleja\OneDrive\Documentos\ericMatLab\resultados.txt','w');
+    idRes=fopen('resultados.txt','w');
     for iv=1:tamCP
             pdc=cp(iv,1);
             vectorAPropagar=pdc;
@@ -564,7 +564,7 @@ fclose(fileIDce);
             errorDePrueba=errorDePrueba+abs(errorU);
     end
     fclose(idRes);
-    fileIDRes = fopen('C:\Users\aleja\OneDrive\Documentos\ericMatLab\resultados.txt','r');
+    fileIDRes = fopen('resultados.txt','r');
     formatSpecce='%f';
     size1=[tamCP,1];
     resultados=fscanf(fileIDRes,formatSpecce,size1);
@@ -579,7 +579,7 @@ fclose(fileIDce);
     
     
     %Guardar los pesos y bias en un txt
-    fileIDPyBF = fopen('C:\Users\aleja\OneDrive\Documentos\ericMatLab\pesosybias.txt','w');
+    fileIDPyBF = fopen('pesosybias.txt','w');
     disp(red);
     disp(bias);
      
@@ -609,23 +609,23 @@ fclose(fileIDce);
     %fprintf(idtP,'%f\r\n',gdp);
     fclose(fileIDRes);
     %grafica de error de época y validacion
-    idE= fopen('C:\Users\aleja\OneDrive\Documentos\ericMatLab\historialError.txt','r');
+    idE= fopen('historialError.txt','r');
     formatSpecce='%f';
     size1=[contador-1,1];
     e=fscanf(idE,formatSpecce,size1);
     fclose(idE);
-    idC= fopen('C:\Users\aleja\OneDrive\Documentos\ericMatLab\historialContador.txt','r');
+    idC= fopen('historialContador.txt','r');
     formatSpecce='%f';
     size1=[contador-1,1];
     c=fscanf(idC,formatSpecce,size1);
     fclose(idC);
     %%%%%%
-    idEV= fopen('C:\Users\aleja\OneDrive\Documentos\ericMatLab\historialErrorV.txt','r');
+    idEV= fopen('historialErrorV.txt','r');
     formatSpecce='%f';
     size1=[contadorV-1,1];
     eV=fscanf(idEV,formatSpecce,size1);
     fclose(idEV);
-    idCV= fopen('C:\Users\aleja\OneDrive\Documentos\ericMatLab\historialContadorV.txt','r');
+    idCV= fopen('historialContadorV.txt','r');
     formatSpecce='%f';
     size1=[contadorV-1,1];
     cV=fscanf(idCV,formatSpecce,size1);
@@ -645,9 +645,9 @@ fprintf('cantidad de actualizaciones:');
 disp(cantidadDeActualizaciones);
 for iPB=1:tamR
     numeroCapa=int2str(iPB);
-    nombreP=strcat('C:\Users\aleja\OneDrive\Documentos\ericMatLab\pesosCapa',numeroCapa,'.txt');
+    nombreP=strcat('pesosCapa',numeroCapa,'.txt');
     arregloPesos(iPB,1)=fopen(nombreP,'r');
-    nombreB=strcat('C:\Users\aleja\OneDrive\Documentos\ericMatLab\biasCapa',numeroCapa,'.txt');
+    nombreB=strcat('biasCapa',numeroCapa,'.txt');
     arregloBias(iPB,1)=fopen(nombreB,'r');
 end
     figure
