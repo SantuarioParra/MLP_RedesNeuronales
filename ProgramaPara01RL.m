@@ -246,8 +246,8 @@ for vap=1:tamR
     end
     bias{vap,1}=capAux;
 end
-disp(red);
-disp(bias);
+%disp(red);
+%disp(bias);
 
 %% Conjunto de entrenamiento
 fileIDce = fopen('iCE.txt','r');
@@ -273,7 +273,7 @@ size1=[tamCV,1];
 tv=fscanf(fileIDtv,formatSpecce,size1);
 fclose(fileIDtv);
 fprintf('tamCE:');
-disp(tamCE);
+%disp(tamCE);
 %%%% while para el aprendizaje
 contadorEpoch=1;
 contador=1;
@@ -295,14 +295,15 @@ for iPB=1:tamR
     numeroCapa=int2str(iPB);
     nombreP=strcat('pesosCapa',numeroCapa,'.txt');
     arregloPesos(iPB,1)=fopen(nombreP,'w');
-    disp(nombreP);
-    disp(arregloPesos(iPB,1));
+    %disp(nombreP);
+   % disp(arregloPesos(iPB,1));
     nombreB=strcat('biasCapa',numeroCapa,'.txt');
     arregloBias(iPB,1)=fopen(nombreB,'w');
 end
 %%%%%%%%%%%%%%%%%%%para la grafica de pesos y bias
 cantidadDeActualizaciones=0;
 quieresContinuar=1;
+errorimp=0;
 while quieresContinuar==1
     esElprimero=true;
 while contadorEpoch<=epochMax && n_v<num_val && errorDeValidacion>error_epoch_train
@@ -486,6 +487,7 @@ contador=contador+1;
     disp("Aprendizaje Exitoso en la epoca: "+contadorEpoch+" con error de Entrenamiento= "+errorDeEntrenamiento);
     else
     % disp("Epoca actual>> "+contadorEpoch+" Error de Entrenamiento>> "+errorDeEntrenamiento);
+    errorimp=errorDeEntrenamiento;
     end
     
 end
@@ -495,6 +497,7 @@ if n_v==num_val
     quieresContinuar=2;
 else
 if errorDeValidacion>error_epoch_train
+    disp("Error actual >>> "+errorimp)
     quieresContinuar=input('Se termino el entrenamiento sin exito,deseas continuar:\n 1)Si\n2)No\n');
 if quieresContinuar==1
     epochMax=input('¿Cuántas iteraciones más?\n');
@@ -580,8 +583,8 @@ fclose(fileIDce);
     
     %Guardar los pesos y bias en un txt
     fileIDPyBF = fopen('pesosybias.txt','w');
-    disp(red);
-    disp(bias);
+    %disp(red);
+    %disp(bias);
      
     fprintf(fileIDPyBF,'-pesos\r\n');
      for i=1:tamR
